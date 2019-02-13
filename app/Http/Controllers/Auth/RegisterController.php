@@ -67,6 +67,10 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'user_type' => $data['user_type'],
+            'gender' => $data['gender'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
             'email_verified_at' => Carbon::now()
         ]);

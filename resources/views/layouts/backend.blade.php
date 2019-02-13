@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>OneUI - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Dams Monitoring and Alert System</title>
 
-        <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+        <meta name="description" content="Dams Monitoring and Alert System">
         <meta name="author" content="pixelcave">
         <meta name="robots" content="noindex, nofollow">
 
@@ -125,7 +125,7 @@
                     <a class="font-w600 text-dual" href="/">
                         <i class="fa fa-circle-notch text-primary"></i>
                         <span class="smini-hide">
-                            <span class="font-w700 font-size-h5">ne</span> <span class="font-w400">4.0</span>
+                            <span class="font-w700 font-size-h5">DMAS</span>
                         </span>
                     </a>
                     <!-- END Logo -->
@@ -213,30 +213,22 @@
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-main-heading">Various</li>
-                        <li class="nav-main-item{{ request()->is('examples/*') ? ' open' : '' }}">
-                            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
-                                <i class="nav-main-link-icon si si-bulb"></i>
-                                <span class="nav-main-link-name">Examples</span>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dam_report') ? ' active' : '' }}" href="/dashboard">
+                                <i class="nav-main-link-icon si si-layers"></i>
+                                <span class="nav-main-link-name">Dam Report</span>
                             </a>
-                            <ul class="nav-main-submenu">
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('examples/plugin') ? ' active' : '' }}" href="/examples/plugin">
-                                        <span class="nav-main-link-name">Plugin</span>
-                                    </a>
-                                </li>
-                                <li class="nav-main-item">
-                                    <a class="nav-main-link{{ request()->is('examples/blank') ? ' active' : '' }}" href="/examples/blank">
-                                        <span class="nav-main-link-name">Blank</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="nav-main-heading">More</li>
-                        <li class="nav-main-item open">
-                            <a class="nav-main-link" href="/">
-                                <i class="nav-main-link-icon si si-globe"></i>
-                                <span class="nav-main-link-name">Landing</span>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('dam_status') ? ' active' : '' }}" href="/dashboard">
+                                <i class="nav-main-link-icon si si-check"></i>
+                                <span class="nav-main-link-name">Dam Status</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('adjust_sensors') ? ' active' : '' }}" href="/dashboard">
+                                <i class="nav-main-link-icon si si-arrow-up-circle"></i>
+                                <span class="nav-main-link-name">Adjust Sensors</span>
                             </a>
                         </li>
                     </ul>
@@ -309,7 +301,7 @@
                                     <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
                                 </div>
                                 <div class="p-2">
-                                    <h5 class="dropdown-header text-uppercase">User Options</h5>
+                                    <h5 class="dropdown-header text-uppercase">{{Auth::getUser()->user_type}}</h5>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
                                         <span>Inbox</span>
                                         <span>
@@ -317,24 +309,20 @@
                                             <i class="si si-envelope-open ml-1"></i>
                                         </span>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                    @if(Auth::user()->user_type == 'Regular')
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{action('ProfileController@index')}}">
                                         <span>Profile</span>
                                         <span>
                                             <span class="badge badge-pill badge-success">1</span>
                                             <i class="si si-user ml-1"></i>
                                         </span>
                                     </a>
+                                    @endif
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
                                         <span>Settings</span>
                                         <i class="si si-settings"></i>
                                     </a>
-                                    <div role="separator" class="dropdown-divider"></div>
-                                    <h5 class="dropdown-header text-uppercase">Actions</h5>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
-                                        <span>Lock Account</span>
-                                        <i class="si si-lock ml-1"></i>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{action('\App\Http\Controllers\Auth\LoginController@logout')}}">
                                         <span>Log Out</span>
                                         <i class="si si-logout ml-1"></i>
                                     </a>
@@ -342,100 +330,6 @@
                             </div>
                         </div>
                         <!-- END User Dropdown -->
-
-                        <!-- Notifications Dropdown -->
-                        <div class="dropdown d-inline-block ml-2">
-                            <button type="button" class="btn btn-sm btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="si si-bell"></i>
-                                <span class="badge badge-primary badge-pill">6</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
-                                <div class="p-2 bg-primary text-center">
-                                    <h5 class="dropdown-header text-uppercase text-white">Notifications</h5>
-                                </div>
-                                <ul class="nav-items mb-0">
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mr-2 ml-3">
-                                                <i class="fa fa-fw fa-check-circle text-success"></i>
-                                            </div>
-                                            <div class="media-body pr-2">
-                                                <div class="font-w600">You have a new follower</div>
-                                                <small class="text-muted">15 min ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mr-2 ml-3">
-                                                <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                            </div>
-                                            <div class="media-body pr-2">
-                                                <div class="font-w600">1 new sale, keep it up</div>
-                                                <small class="text-muted">22 min ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mr-2 ml-3">
-                                                <i class="fa fa-fw fa-times-circle text-danger"></i>
-                                            </div>
-                                            <div class="media-body pr-2">
-                                                <div class="font-w600">Update failed, restart server</div>
-                                                <small class="text-muted">26 min ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mr-2 ml-3">
-                                                <i class="fa fa-fw fa-plus-circle text-info"></i>
-                                            </div>
-                                            <div class="media-body pr-2">
-                                                <div class="font-w600">2 new sales, keep it up</div>
-                                                <small class="text-muted">33 min ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mr-2 ml-3">
-                                                <i class="fa fa-fw fa-user-plus text-success"></i>
-                                            </div>
-                                            <div class="media-body pr-2">
-                                                <div class="font-w600">You have a new subscriber</div>
-                                                <small class="text-muted">41 min ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark media py-2" href="javascript:void(0)">
-                                            <div class="mr-2 ml-3">
-                                                <i class="fa fa-fw fa-check-circle text-success"></i>
-                                            </div>
-                                            <div class="media-body pr-2">
-                                                <div class="font-w600">You have a new follower</div>
-                                                <small class="text-muted">42 min ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="p-2 border-top">
-                                    <a class="btn btn-sm btn-light btn-block text-center" href="javascript:void(0)">
-                                        <i class="fa fa-fw fa-arrow-down mr-1"></i> Load More..
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Notifications Dropdown -->
-
-                        <!-- Toggle Side Overlay -->
-                        <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-                        <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="side_overlay_toggle">
-                            <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
-                        </button>
-                        <!-- END Toggle Side Overlay -->
                     </div>
                     <!-- END Right Section -->
                 </div>
@@ -478,21 +372,6 @@
                 @yield('content')
             </main>
             <!-- END Main Container -->
-
-            <!-- Footer -->
-            <footer id="page-footer" class="bg-body-light">
-                <div class="content py-3">
-                    <div class="row font-size-sm">
-                        <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-right">
-                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="font-w600" href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
-                        </div>
-                        <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left">
-                            <a class="font-w600" href="https://1.envato.market/xWy" target="_blank">OneUI</a> &copy; <span data-toggle="year-copy">2018</span>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!-- END Footer -->
 
             <!-- Apps Modal -->
             <!-- Opens from the modal toggle button in the header -->

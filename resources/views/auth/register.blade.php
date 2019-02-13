@@ -47,6 +47,49 @@
                                             @endif
                                         </div>
                                         <div class="form-group">
+                                            <select class="form-control form-control-lg form-control-alt"
+                                                    id="user_type" name="user_type" placeholder="User Type">
+                                                <option>Regular</option>
+                                                <option>Engineer</option>
+                                                <option>Admin</option>
+                                            </select>
+                                            @if ($errors->has('user_type'))
+                                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('user_type') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control form-control-lg form-control-alt"
+                                                    id="gender" name="gender" placeholder="Gender">
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                            @if ($errors->has('gender'))
+                                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="address" class="form-control form-control-lg form-control-alt"
+                                                   id="address" name="address" placeholder="Address">
+                                            @if ($errors->has('address'))
+                                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="phone" class="form-control form-control-lg form-control-alt"
+                                                   id="phone" name="phone" placeholder="Phone">
+                                            @if ($errors->has('phone'))
+                                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
                                             <input type="password" class="form-control form-control-lg form-control-alt"
                                                    id="password" name="password" placeholder="Password">
                                             @if ($errors->has('password'))

@@ -16,7 +16,9 @@ Route::view('/', 'landing');
 Route::match(['get', 'post'], '/dashboard', function(){
     return view('dashboard');
 });
-Route::view('/examples/plugin', 'examples.plugin');
+Route::get('/profile', 'ProfileController@index');
+Route::post('/profile', 'ProfileController@save');
+
 Route::view('/examples/blank', 'examples.blank');
 
 Auth::routes();
