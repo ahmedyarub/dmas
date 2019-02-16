@@ -21,39 +21,32 @@
                             <div class="p-sm-3 px-lg-4 py-lg-5">
                                 <!-- jQuery Validation (.js-validation-signup class is initialized in js/pages/op_auth_signup.min.js which was auto compiled from _es6/pages/op_auth_signup.js) -->
                                 <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                <form method="POST" action="{{ action('ProfileController@save') }}">
-                                    @csrf
-                                    <div class="form-group">
-                                        <select class="form-control form-control-lg form-control-alt"
-                                                id="gender" name="gender" placeholder="Gender">
-                                            <option {{$user->gender == 'Male'?'checked':''}}>Male</option>
-                                            <option {{$user->gender == 'Female'?'checked':''}}>Female</option>
-                                        </select>
-                                        @if ($errors->has('gender'))
-                                            <span class="invalid-feedback" role="alert">
+                                {!! Form::open(['action' => 'ProfileController@save']) !!}
+                                @csrf
+                                <div class="form-group">
+                                    {{ Form::select('gender',['Male' => 'Male', 'Female' => 'Female'],old('gender')??$user->gender,['class' => "form-control form-control-lg form-control-alt", 'id'=> 'gender']) }}
+                                    @if ($errors->has('gender'))
+                                        <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
-                                        @endif
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="address" class="form-control form-control-lg form-control-alt"
-                                               id="address" name="address" placeholder="Address"
-                                               value="{{$user->address}}">
-                                        @if ($errors->has('address'))
-                                            <span class="invalid-feedback" role="alert">
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::input('text', 'address', old('address')??$user->address,['class' =>"form-control form-control-lg form-control-alt", 'id'=>'address', 'placeholder' => 'Address']) }}
+                                    @if ($errors->has('address'))
+                                        <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('address') }}</strong>
                                     </span>
-                                        @endif
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="phone" class="form-control form-control-lg form-control-alt"
-                                               id="phone" name="phone" placeholder="Phone" value="{{$user->phone}}">
-                                        @if ($errors->has('phone'))
-                                            <span class="invalid-feedback" role="alert">
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    {{ Form::input('text', 'phone', old('phone')??$user->phone,['class' =>"form-control form-control-lg form-control-alt", 'id'=>'phone', 'placeholder' => 'Phone']) }}
+                                    @if ($errors->has('phone'))
+                                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
-                                        @endif
-                                    </div>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6 col-xl-5">
@@ -62,8 +55,8 @@
                                     </button>
                                 </div>
                             </div>
-                            </form>
-                            <!-- END Sign Up Form -->
+                        {{ Form::close() }}
+                        <!-- END Sign Up Form -->
                         </div>
                     </div>
                 </div>

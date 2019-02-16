@@ -25,94 +25,78 @@
                                 <!-- Sign Up Form -->
                                 <!-- jQuery Validation (.js-validation-signup class is initialized in js/pages/op_auth_signup.min.js which was auto compiled from _es6/pages/op_auth_signup.js) -->
                                 <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                <form method="POST" action="{{ route('register') }}">
-                                    @csrf
-                                    <div class="py-3">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-lg form-control-alt"
-                                                   id="name" name="name" placeholder="Username">
-                                            @if ($errors->has('name'))
-                                                <span class="invalid-feedback" role="alert">
+                                {!! Form::open(['route' => 'register']) !!}
+                                @csrf
+                                <div class="py-3">
+                                    <div class="form-group">
+                                        {{ Form::input('text', 'name', old('name'),['class' =>"form-control form-control-lg form-control-alt", 'id'=>'name', 'placeholder' => 'Username']) }}
+                                        @if ($errors->has('name'))
+                                            <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-lg form-control-alt"
-                                                   id="email" name="email" placeholder="Email">
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::input('text', 'email', old('email'),['class' =>"form-control form-control-lg form-control-alt", 'id'=>'email', 'placeholder' => 'Email']) }}
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control form-control-lg form-control-alt"
-                                                    id="user_type" name="user_type" placeholder="User Type">
-                                                <option>Regular</option>
-                                                <option>Engineer</option>
-                                                <option>Admin</option>
-                                            </select>
-                                            @if ($errors->has('user_type'))
-                                                <span class="invalid-feedback" role="alert">
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::select('user_type',['Regular' => 'Regular', 'Engineer' => 'Engineer', 'Admin'],old('user_type'),['class' => "form-control form-control-lg form-control-alt", 'id'=> 'user_type']) }}
+                                        @if ($errors->has('user_type'))
+                                            <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('user_type') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control form-control-lg form-control-alt"
-                                                    id="gender" name="gender" placeholder="Gender">
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                            </select>
-                                            @if ($errors->has('gender'))
-                                                <span class="invalid-feedback" role="alert">
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::select('gender',['Male' => 'Male', 'Female' => 'Female'],old('gender'),['class' => "form-control form-control-lg form-control-alt", 'id'=> 'gender']) }}
+                                        @if ($errors->has('gender'))
+                                            <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="address" class="form-control form-control-lg form-control-alt"
-                                                   id="address" name="address" placeholder="Address">
-                                            @if ($errors->has('address'))
-                                                <span class="invalid-feedback" role="alert">
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::input('text', 'address', old('address'),['class' =>"form-control form-control-lg form-control-alt", 'id'=>'address', 'placeholder' => 'Address']) }}
+                                        @if ($errors->has('address'))
+                                            <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('address') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="phone" class="form-control form-control-lg form-control-alt"
-                                                   id="phone" name="phone" placeholder="Phone">
-                                            @if ($errors->has('phone'))
-                                                <span class="invalid-feedback" role="alert">
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::input('text', 'phone', old('phone'),['class' =>"form-control form-control-lg form-control-alt", 'id'=>'phone', 'placeholder' => 'Phone']) }}
+                                        @if ($errors->has('phone'))
+                                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-lg form-control-alt"
-                                                   id="password" name="password" placeholder="Password">
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        {{ Form::password('password',['class' =>"form-control form-control-lg form-control-alt", 'id'=>'password', 'placeholder' => 'Password']) }}
+                                        @if ($errors->has('password'))
+                                            <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-lg form-control-alt"
-                                                   id="password-confirm" name="password_confirmation"
-                                                   placeholder="Password Confirm">
-                                        </div>
+                                        @endif
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-6 col-xl-5">
-                                            <button type="submit" class="btn btn-block btn-success">
-                                                <i class="fa fa-fw fa-plus mr-1"></i> Sign Up
-                                            </button>
-                                        </div>
+                                    <div class="form-group">
+                                        {{ Form::password('password_confirmation',['class' =>"form-control form-control-lg form-control-alt", 'id'=>'password_confirmation', 'placeholder' => 'Password Confirmation']) }}
                                     </div>
-                                </form>
-                                <!-- END Sign Up Form -->
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6 col-xl-5">
+                                        <button type="submit" class="btn btn-block btn-success">
+                                            <i class="fa fa-fw fa-plus mr-1"></i> Sign Up
+                                        </button>
+                                    </div>
+                                </div>
+                            {{ Form::close() }}
+                            <!-- END Sign Up Form -->
                             </div>
                         </div>
                     </div>
