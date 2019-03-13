@@ -208,25 +208,25 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
+                            <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="{{action('HomeController@index')}}">
                                 <i class="nav-main-link-icon si si-cursor"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dam_report') ? ' active' : '' }}" href="/dashboard">
+                            <a class="nav-main-link{{ request()->is('dam_report') ? ' active' : '' }}" href="{{action('DamReportController@index')}}">
                                 <i class="nav-main-link-icon si si-layers"></i>
                                 <span class="nav-main-link-name">Dam Report</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('dam_status') ? ' active' : '' }}" href="/dashboard">
+                            <a class="nav-main-link{{ request()->is('dam_status') ? ' active' : '' }}" href="{{action('DamController@index')}}">
                                 <i class="nav-main-link-icon si si-check"></i>
                                 <span class="nav-main-link-name">Dam Status</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('adjust_sensors') ? ' active' : '' }}" href="/dashboard">
+                            <a class="nav-main-link{{ request()->is('adjust_sensors') ? ' active' : '' }}" href="{{action('SensorController@index')}}">
                                 <i class="nav-main-link-icon si si-arrow-up-circle"></i>
                                 <span class="nav-main-link-name">Adjust Sensors</span>
                             </a>

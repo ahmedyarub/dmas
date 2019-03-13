@@ -30,3 +30,6 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::resource('dams', 'DamController');
 
 Route::resource('sensors', 'SensorController');
+
+Route::get('/dam_report', 'DamReportController@index');
+Route::post('/dam_report', 'DamReportController@search');
