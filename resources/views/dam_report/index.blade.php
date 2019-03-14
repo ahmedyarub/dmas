@@ -114,11 +114,13 @@
     <script src="{{ asset('js/plugins/easy-pie-chart/jquery.easypiechart.min.js') }}"></script>
     <script src="{{ asset('js/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset('js/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+    @if(!empty($readings))
     <script>
         labels = {!! json_encode($readings->pluck('created_at')) !!};
         data = {{ json_encode($readings->pluck('water_level')) }};
     </script>
     <script src="{{ asset('js/pages/be_comp_charts.js') }}"></script>
+    @endif
 
     <script>jQuery(function () {
             One.helpers(['datepicker', 'masked-inputs', 'easy-pie-chart', 'sparkline']);
