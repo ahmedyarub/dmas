@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dam;
 use App\Sensor;
+use App\SensorReading;
 use Illuminate\Http\Request;
 
 class SensorController extends Controller
@@ -15,7 +16,7 @@ class SensorController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['reading']);
     }
 
     /**
@@ -47,7 +48,7 @@ class SensorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -70,7 +71,7 @@ class SensorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -85,7 +86,7 @@ class SensorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -94,6 +95,18 @@ class SensorController extends Controller
         $sensor->delete();
 
         return redirect('/sensors');
+    }
+
+    public function reading($sensor_id, $reading)
+    {
+        $sensor_reading = new SensorReading();
+
+        $sensor_reading->sensor_id = $sensor_id;
+        $sensor_reading->temperature = 0;
+        $sensor_reading->water_level = $reading;
+        $sensor_reading->humidity = 0;
+
+        $sensor_reading->save();
     }
 
 }
