@@ -31,6 +31,6 @@ Route::resource('dams', 'DamController');
 
 Route::resource('sensors', 'SensorController');
 Route::get('/sensors/reading/{sensor_id}/{value}','SensorController@reading');
-sensors/reading
+
 Route::get('/dam_report', 'DamReportController@index');
 Route::post('/dam_report', 'DamReportController@search');

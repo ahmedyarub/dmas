@@ -35,7 +35,7 @@ class pageCompCharts {
             labels: labels,
             datasets: [
                 {
-                    label: 'Water Level',
+                    label: 'Water Level (ml)',
                     fill: true,
                     backgroundColor: 'rgba(220,220,220,.3)',
                     borderColor: 'rgba(220,220,220,1)',

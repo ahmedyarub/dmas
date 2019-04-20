@@ -70,7 +70,7 @@
                             <thead>
                             <tr>
                                 <th class="text-center" style="width: 50px;">Serial</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">Water Level</th>
+                                <th class="d-none d-sm-table-cell" style="width: 15%;">Water Level (ml)</th>
                                 <th class="text-center" style="width: 100px;">Date/Time</th>
                             </tr>
                             </thead>

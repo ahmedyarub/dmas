@@ -99,12 +99,14 @@ class SensorController extends Controller
 
     public function reading($sensor_id, $reading)
     {
+        $readings = explode('|',$reading);
+
         $sensor_reading = new SensorReading();
 
         $sensor_reading->sensor_id = $sensor_id;
-        $sensor_reading->temperature = 0;
-        $sensor_reading->water_level = $reading;
-        $sensor_reading->humidity = 0;
+        $sensor_reading->temperature = $readings[0];
+        $sensor_reading->humidity = $readings[1];
+        $sensor_reading->water_level = round(($readings[2]/1024)*4000);
 
         $sensor_reading->save();
     }
