@@ -15,7 +15,7 @@
                     </ol>
                 </nav>
             </div>
-       </div>
+        </div>
     </div>
     <!-- END Hero -->
 
@@ -27,8 +27,8 @@
                     <div class="block-header">
                         <h3 class="block-title">Welcome {{Auth::user()->name}}</h3>
                     </div>
-                    <div class="block-content">
-
+                    <div class="block-content" >
+                        <img style="display:block;margin:auto;max-width: 100%; max-height: 100%;" src="{{ asset('dmas_logo.jpeg') }}">
                     </div>
                 </div>
             </div>
