@@ -106,9 +106,13 @@ class SensorController extends Controller
         $sensor_reading->sensor_id = $sensor_id;
         $sensor_reading->temperature = $readings[0];
         $sensor_reading->humidity = $readings[1];
-        $sensor_reading->water_level = round(($readings[2]/1024)*4000);
+        $sensor_reading->water_level = round(($readings[2]/1024)*40);
 
         $sensor_reading->save();
+
+        if($sensor_reading->water_level>20) {
+            file_get_contents('https://api.smsglobal.com/http-api.php?action=sendsms&user=oaea3hxa&password=zDrfqiJZ&from=Test&to=5521992627364&text=Dam%20warning');
+        }
     }
 
 }

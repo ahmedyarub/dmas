@@ -239,6 +239,7 @@ MAIN CONTENT LAYOUT
                         <span class="nav-main-link-name">Dam Status</span>
                     </a>
                 </li>
+                @if(Auth::user()->user_type == 'Admin')
                 <li class="nav-main-item">
                     <a class="nav-main-link{{ request()->is('adjust_sensors') ? ' active' : '' }}"
                        href="{{action('SensorController@index')}}">
@@ -246,6 +247,7 @@ MAIN CONTENT LAYOUT
                         <span class="nav-main-link-name">Adjust Sensors</span>
                     </a>
                 </li>
+                @endif
             </ul>
         </div>
         <!-- END Side Navigation -->
