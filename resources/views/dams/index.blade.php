@@ -21,9 +21,9 @@
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 50px;">Name</th>
-                            <th>GPS</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">City</th>
-                            <th class="text-center" style="width: 100px;">Emirate</th>
+                            <th class="text-center">GPS</th>
+                            <th class="text-center" style="width: 25%;">City</th>
+                            <th class="text-center" style="width: 25%;">Emirate</th>
                             <th class="text-center" style="width: 100px;">Actions</th>
                         </tr>
                         </thead>
