@@ -45,7 +45,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        {{ Form::select('user_type',['Regular' => 'Regular', 'Engineer' => 'Engineer', 'Admin'],old('user_type'),['class' => "form-control form-control-lg form-control-alt", 'id'=> 'user_type']) }}
+                                        {{ Form::select('user_type',['Regular' => 'Regular', 'Engineer' => 'Engineer', 'Admin'=>'Admin'],old('user_type'),['class' => "form-control form-control-lg form-control-alt", 'id'=> 'user_type']) }}
                                         @if ($errors->has('user_type'))
                                             <span class="text-danger" role="alert">
                                         <strong>{{ $errors->first('user_type') }}</strong>

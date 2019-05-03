@@ -7,7 +7,7 @@
             <!-- Sign Up Block -->
             <div class="block">
                 <div class="block-header">
-                    <h3 class="block-title">Create Sensor</h3>
+                    <h3 class="block-title">Create/Edit Sensor</h3>
                 </div>
                 <div class="block-content">
                     <div class="p-sm-3 px-lg-4 py-lg-5">

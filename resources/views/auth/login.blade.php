@@ -26,11 +26,21 @@
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-alt form-control-lg"
                                                        id="email" name="email" placeholder="Username">
+                                                @if ($errors->has('email'))
+                                                    <span class="text-danger" role="alert">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
                                             <div class="form-group">
                                                 <input type="password"
                                                        class="form-control form-control-alt form-control-lg"
                                                        id="password" name="password" placeholder="Password">
+                                                @if ($errors->has('password'))
+                                                    <span class="text-danger" role="alert">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                                @endif
                                             </div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox">
