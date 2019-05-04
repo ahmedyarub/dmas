@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Dam;
 use App\Sensor;
 use App\SensorReading;
+use App\User;
 use Illuminate\Http\Request;
 
 class SensorController extends Controller
@@ -99,20 +100,21 @@ class SensorController extends Controller
 
     public function reading($sensor_id, $reading)
     {
-        $readings = explode('|',$reading);
+        $readings = explode('|', $reading);
 
         $sensor_reading = new SensorReading();
 
         $sensor_reading->sensor_id = $sensor_id;
         $sensor_reading->temperature = $readings[0];
         $sensor_reading->humidity = $readings[1];
-        $sensor_reading->water_level = round(($readings[2]/1024)*40);
+        $sensor_reading->water_level = round(($readings[2] / 1024) * 40);
 
         $sensor_reading->save();
 
-        if($sensor_reading->water_level>20) {
-            file_get_contents('https://api.smsglobal.com/http-api.php?action=sendsms&user=oaea3hxa&password=zDrfqiJZ&from=Test&to=5521992627364&text=Dam%20warning');
+        if ($sensor_reading->water_level > 20) {
+            User::where('user_type', 'Regular')->get()->each(function ($item, $key) {
+                file_get_contents('https://api.smsglobal.com/http-api.php?action=sendsms&user=oaea3hxa&password=zDrfqiJZ&from=Test&to=' . $item->phone . '&text=Dam%20warning');
+            });
         }
     }
-
 }
